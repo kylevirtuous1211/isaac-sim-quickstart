@@ -1,0 +1,34 @@
+name: isaac-sim-quickstart
+
+services:
+  isaac-sim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: isaac-sim-quickstart:latest
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - ACCEPT_EULA=Y
+      - PRIVACY_CONSENT=Y
+      - OMNI_KIT_ALLOW_ROOT=1
+      - DISPLAY=${DISPLAY:-:20}
+      - XAUTHORITY=/tmp/.host-Xauthority
+    volumes:
+      # X11 auth (Chrome Remote Desktop uses :20 by default)
+      - ${HOME}/.Xauthority:/tmp/.host-Xauthority:ro
+      # Example scripts (read-only, edit on host)
+      - ./examples:/workspace/examples:ro
+      # Persistent caches (speeds up subsequent launches)
+      - ./cache/isaac-sim/kit:/isaac-sim/kit/cache:rw
+      - ./cache/isaac-sim/ov:/root/.cache/ov:rw
+      - ./cache/isaac-sim/computecache:/root/.nv/ComputeCache:rw
+      - ./cache/isaac-sim/glcache:/root/.cache/nvidia/GLCache:rw
+      - ./cache/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw
+    # Launch Isaac Sim GUI with VS Code extension (TCP socket on port 8226)
+    command: /isaac-sim/isaac-sim.sh --enable isaacsim.code_editor.vscode
+    # host networking required for port 8226 + X11 forwarding
+    network_mode: host
+    ipc: host
+    restart: unless-stopped
