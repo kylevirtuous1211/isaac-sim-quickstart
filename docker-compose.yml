@@ -20,6 +20,12 @@ services:
       - ${HOME}/.Xauthority:/tmp/.host-Xauthority:ro
       # Example scripts (read-only, edit on host)
       - ./examples:/workspace/examples:ro
+      # RMPflow config files (editable for tuning obstacle avoidance)
+      - ./configs:/workspace/configs:ro
+      # Midterm project scripts and config
+      - ./midterm_project:/workspace/midterm_project:ro
+      # Replicator data writer output (example 05)
+      - ./output:/workspace/output:rw
       # Persistent caches (speeds up subsequent launches)
       - ./cache/isaac-sim/kit:/isaac-sim/kit/cache:rw
       - ./cache/isaac-sim/ov:/root/.cache/ov:rw
