@@ -27,6 +27,9 @@ docker compose up -d
 |--------|-------------|
 | `examples/hand_on_1_amr.py` | JetBot navigates 4 colored waypoints in a square |
 | `examples/hand_on_2_franka.py` | Franka Panda picks 3 random cubes, stacks a pyramid |
+| `examples/hand_on_5_domain_randomization.py` | Replicator scatters 6 YCB props around Franka and captures RGB+semantic+instance segmentation to `./output/` |
+
+> Example 5 writes data to `./output/` on the host. The first time you run it, create the directory and restart the container so the bind mount picks up: `mkdir -p output && docker compose down && docker compose up -d`.
 
 ## How It Works
 

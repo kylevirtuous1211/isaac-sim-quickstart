@@ -24,6 +24,8 @@ services:
       - ./configs:/workspace/configs:ro
       # Midterm project scripts and config
       - ./midterm_project:/workspace/midterm_project:ro
+      # Replicator data writer output (example 05)
+      - ./output:/workspace/output:rw
       # Persistent caches (speeds up subsequent launches)
       - ./cache/isaac-sim/kit:/isaac-sim/kit/cache:rw
       - ./cache/isaac-sim/ov:/root/.cache/ov:rw
