@@ -24,6 +24,8 @@ services:
       - ./configs:/workspace/configs:ro
       # Midterm project scripts and config
       - ./midterm_project:/workspace/midterm_project:ro
+      # Midterm project (new layout) — rw so Isaac Sim can save USDs directly
+      - ./midterm_project_new:/workspace/midterm_project_new:rw
       # Replicator data writer output (example 05)
       - ./output:/workspace/output:rw
       # Persistent caches (speeds up subsequent launches)
@@ -31,7 +33,10 @@ services:
       - ./cache/isaac-sim/ov:/root/.cache/ov:rw
       - ./cache/isaac-sim/computecache:/root/.nv/ComputeCache:rw
       - ./cache/isaac-sim/glcache:/root/.cache/nvidia/GLCache:rw
-      - ./cache/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw
+      # Kit writes its log files to /root/.nvidia-omniverse/logs/ by default.
+      # Bind that to midterm_project_new/logs/ so logs land inside the project,
+      # readable from host without docker logs.
+      - ./midterm_project_new/logs:/root/.nvidia-omniverse/logs:rw
     # Launch Isaac Sim GUI with VS Code extension (TCP socket on port 8226)
     command: /isaac-sim/isaac-sim.sh --enable isaacsim.code_editor.vscode
     # host networking required for port 8226 + X11 forwarding
