@@ -1,3 +1,6 @@
 [submodule "examples"]
 	path = examples
 	url = https://github.com/kylevirtuous1211/Digital_Twin_semester_examples.git
+[submodule "midterm_project"]
+	path = midterm_project
+	url = https://github.com/kylevirtuous1211/Isaac_sim_AMR_Franka_Arm_navigation_mission.git

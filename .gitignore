@@ -3,11 +3,6 @@ cache/
 __pycache__/
 *.pyc
 
-# midterm_project/ is its own git repo:
-#   https://github.com/kylevirtuous1211/Isaac_sim_AMR_Franka_Arm_navigation_mission
-# Track it separately; parent repo just provides the Docker / socket host.
-midterm_project/
-
 # Logs and pycache from midterm_project_new (dir itself is untracked locally)
 midterm_project_new/logs/
 midterm_project_new/__pycache__/
