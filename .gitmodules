@@ -4,3 +4,6 @@
 [submodule "midterm_project"]
 	path = midterm_project
 	url = https://github.com/kylevirtuous1211/Isaac_sim_AMR_Franka_Arm_navigation_mission.git
+[submodule "Final_project"]
+	path = Final_project
+	url = https://github.com/kylevirtuous1211/Digital-Twin-Final-Project-Imitation-Learning-and-Reinforcement-Learning.git
